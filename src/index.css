@@ -1,0 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap');
+
+body {
+  padding: 0;
+  font-family: 'Inter', sans-serif;
+  margin: 0;
+  background-color: #e5e5e5;
+  background-image: radial-gradient(#000000 1px, transparent 1px);
+  background-size: 20px 20px; /* Adjust this to make dots closer/further */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+* {
+  box-sizing: border-box;
+}
