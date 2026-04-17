@@ -1,6 +1,5 @@
-/* --- GLOBAL RESET & WRAPPERS --- */
 * {
-  box-sizing: border-box; /* Crucial: prevents inputs from sticking out of the card */
+  box-sizing: border-box;
 }
 
 .app-wrapper {
@@ -8,16 +7,17 @@
   width: 100vw;
   height: 100vh;
   overflow: hidden;
-  background-color: #0d0d1a; /* Matches the dark background from your image */
+  background-color: #0d0d1a;
 }
 
 .background-layer {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   z-index: 0;
+  pointer-events: none;
 }
 
 .container {
@@ -31,156 +31,6 @@
   padding: 20px;
 }
 
-/* --- LOGO & TYPOGRAPHY --- */
-.logo-box {
-  background: white;
-  color: #5227FF;
-  padding: 10px 15px;
-  font-weight: 900;
-  border: 3px solid #5227FF;
-  box-shadow: 4px 4px 0px #ffffff;
-  margin-bottom: 15px;
-  text-align: center;
-  line-height: 1.1;
-  font-size: 0.9rem;
-}
-
-.title {
-  color: #ffffff;
-  text-transform: uppercase;
-  font-weight: 900;
-  font-size: 2.5rem;
-  margin: 0;
-  letter-spacing: 3px;
-  text-shadow: 3px 3px 0px #5227FF;
-}
-
-.subtitle {
-  color: #a0a0c0;
-  font-size: 0.8rem;
-  font-weight: 700;
-  margin-bottom: 40px;
-  letter-spacing: 2px;
-  opacity: 0.8;
-}
-
-/* --- THE LOGIN CARD (Beautifully Organized) --- */
-.login-card {
-  background: #1a1a2e; /* Deep navy card */
-  border: 3px solid #5227FF;
-  box-shadow: 12px 12px 0px #5227FF;
-  padding: 50px 40px; /* More padding makes it look premium */
-  width: 100%;
-  max-width: 400px;
-  position: relative;
-  color: white;
-  text-align: left; /* Aligns all text inside to the left */
-}
-
-.card-header {
-  margin-top: 0;
-  margin-bottom: 30px;
-  font-size: 1.3rem;
-  font-weight: 800;
-  letter-spacing: 1px;
-}
-
-.accent-square {
-  position: absolute;
-  top: -3px;
-  right: -3px;
-  width: 35px;
-  height: 35px;
-  background: #5227FF;
-  border: 3px solid white;
-}
-
-/* --- INPUTS & LABELS --- */
-.input-group {
-  margin-bottom: 25px;
-  width: 100%;
-}
-
-.input-group label {
-  display: block;
-  color: #a0a0c0;
-  font-size: 0.75rem;
-  font-weight: 800;
-  text-transform: uppercase;
-  margin-bottom: 10px;
-  letter-spacing: 1px;
-}
-
-.input-field {
-  background: #0d0d1a;
-  border: 2px solid #3f3f5a;
-  color: white;
-  padding: 15px;
-  width: 100%; /* Now stays inside because of box-sizing */
-  outline: none;
-  font-family: inherit;
-  transition: border-color 0.3s ease;
-}
-
-.input-field:focus {
-  border-color: #5227FF;
-}
-
-/* --- LOGIN BUTTON --- */
-.login-btn {
-  width: 100%;
-  background: #5227FF;
-  color: white;
-  border: none;
-  box-shadow: 5px 5px 0px #ffffff;
-  padding: 18px;
-  font-weight: 900;
-  font-size: 1rem;
-  text-transform: uppercase;
-  letter-spacing: 1.5px;
-  cursor: pointer;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 15px;
-  transition: all 0.2s ease;
-  margin-top: 10px;
-}
-
-.login-btn:hover {
-  background: #6a45ff;
-  transform: translate(-2px, -2px);
-  box-shadow: 7px 7px 0px #ffffff;
-}
-
-.login-btn:active {
-  transform: translate(2px, 2px);
-  box-shadow: 2px 2px 0px #ffffff;
-}
-
-/* --- FOOTER ELEMENTS --- */
-.divider {
-  height: 1px;
-  background: rgba(255, 255, 255, 0.1);
-  margin: 30px 0;
-}
-
-.create-acc {
-  display: block;
-  text-align: center;
-  font-weight: 800;
-  font-size: 0.85rem;
-  color: #5227FF;
-  text-decoration: underline;
-  cursor: pointer;
-  transition: color 0.3s;
-}
-
-.create-acc:hover {
-  color: #ffffff;
-}
-
-/* --- PAGINATION DOTS --- */
 .dots-container {
   display: flex;
   gap: 12px;
@@ -195,167 +45,6 @@
 }
 
 .dot.active {
-  background: #5227FF;
-  border-color: #5227FF;
-}
-
-/* Navigation */
-.top-nav {
-  position: absolute;
-  top: 0;
-  width: 100%;
-  padding: 20px 50px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.nav-logo {
-  background: black;
-  color: #00e676;
-  padding: 5px 10px;
-  font-weight: 900;
-  font-size: 0.7rem;
-  border: 2px solid black;
-}
-
-.exit-btn {
-  background: none;
-  border: none;
-  font-weight: 800;
-  text-decoration: underline;
-  cursor: pointer;
-  color: white;
-}
-
-/* Verification Card Specifics */
-.verification-card {
-  background: #1a1a2e;
-  border: 3px solid #5227FF;
-  box-shadow: 12px 12px 0px #5227FF;
-  padding: 50px;
-  width: 100%;
-  max-width: 600px; /* Wider than the login card */
-  text-align: left;
-}
-
-.secure-title {
-  font-size: 2.5rem;
-  font-weight: 900;
-  margin: 0;
-  color: white;
-}
-
-.secure-title .highlight {
-  background: #00e676;
-  color: black;
-  padding: 0 10px;
-}
-
-.secure-subtitle {
-  color: #a0a0c0;
-  margin: 20px 0 40px 0;
-  font-weight: 600;
-  max-width: 400px;
-}
-
-/* OTP Input Styling */
-.otp-container {
-  display: flex;
-  gap: 15px;
-  margin-bottom: 40px;
-}
-
-.otp-input {
-  width: 60px;
-  height: 70px;
-  background: white;
-  border: 3px solid black;
-  box-shadow: 4px 4px 0px #000;
-  text-align: center;
-  font-size: 1.5rem;
-  font-weight: 900;
-  outline: none;
-}
-
-.otp-input:focus {
-  border-color: #5227FF;
-  transform: translate(-2px, -2px);
-  box-shadow: 6px 6px 0px #5227FF;
-}
-
-/* Action Row */
-.verify-action-row {
-  display: flex;
-  align-items: center;
-  gap: 30px;
-}
-
-.verify-btn {
-  width: 200px;
-  background: #00e676;
-  color: black;
-  box-shadow: 4px 4px 0px black;
-}
-
-.resend-text {
-  font-size: 0.8rem;
-  color: #a0a0c0;
-  font-weight: 700;
-}
-
-.resend-link {
-  color: white;
-  text-decoration: underline;
-  cursor: pointer;
-}
-
-/* Bottom Info Cards */
-.info-cards-row {
-  display: flex;
-  gap: 20px;
-  margin-top: 30px;
-  width: 100%;
-  max-width: 600px;
-}
-
-.info-card {
-  flex: 1;
-  background: #1a1a2e;
-  border: 3px solid black;
-  box-shadow: 8px 8px 0px #000;
-  padding: 25px;
-  text-align: left;
-}
-
-.info-card h3 {
-  color: white;
-  font-size: 1rem;
-  margin: 15px 0 10px 0;
-}
-
-.info-card p {
-  color: #a0a0c0;
-  font-size: 0.75rem;
-  line-height: 1.4;
-}
-
-.icon-box {
-  width: 30px;
-  height: 30px;
-  border: 2px solid black;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.green-icon { background: #00e676; }
-.white-icon { background: white; }
-
-.rights-footer {
-  margin-top: 50px;
-  font-size: 0.7rem;
-  font-weight: 800;
-  color: #555;
-  letter-spacing: 1px;
+  background: #5227ff;
+  border-color: #5227ff;
 }
