@@ -34,6 +34,12 @@
   border: 2px solid black;
 }
 
+.logo {
+  width: 44px;
+  height: auto;
+  display: block;
+}
+
 .exit-btn {
   background: none;
   border: none;

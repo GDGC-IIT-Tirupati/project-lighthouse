@@ -1,7 +1,11 @@
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+
 import DotGrid from "../../components/DotGrid/DotGrid";
 import NormalButton from "../../components/NormalButton/NormalButton";
+
+import webLogo from "../../assets/website_logo.png";
+
 import "./login-page.css";
 
 function Login() {
@@ -28,9 +32,7 @@ function Login() {
       <div className="login-page">
         <header className="header-section">
           <div className="logo-box">
-            Light
-            <br />
-            House
+            <img src={webLogo} className="logo" alt="Lighthouse logo" />
           </div>
           <h1 className="title">LIGHTHOUSE</h1>
           <p className="subtitle">Easy to open, Fast to close</p>

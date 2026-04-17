@@ -4,6 +4,8 @@ import { useState } from "react";
 import DotGrid from "../../components/DotGrid/DotGrid";
 import NormalButton from "../../components/NormalButton/NormalButton";
 
+import webLogo from "../../assets/website_logo.png";
+
 import "./otp-page.css";
 
 function OTPPage() {
@@ -30,9 +32,7 @@ function OTPPage() {
       <div className="otp-page">
         <nav className="top-nav">
           <div className="nav-logo">
-            Light
-            <br />
-            House
+            <img src={webLogo} className="logo" alt="Lighthouse logo" />
           </div>
           <button className="exit-btn" onClick={() => navigate("/")}>
             Exit
