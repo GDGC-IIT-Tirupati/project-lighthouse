@@ -14,7 +14,7 @@ function OTPPage() {
 
   const handleOTP = (otp) => {
     //TODO: Class fastAPI here
-    navigate("/home");
+    navigate("/");
   };
 
   return (
@@ -34,7 +34,7 @@ function OTPPage() {
           <div className="nav-logo">
             <img src={webLogo} className="logo" alt="Lighthouse logo" />
           </div>
-          <button className="exit-btn" onClick={() => navigate("/")}>
+          <button className="exit-btn" onClick={() => navigate("/login")}>
             Exit
           </button>
         </nav>

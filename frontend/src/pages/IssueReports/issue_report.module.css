@@ -1,0 +1,25 @@
+.mainarea {
+  background-color: white;
+  min-height: 420px;
+  border: 2px solid #111;
+  padding: 20px;
+  box-shadow: 10px 10px 1px rgb(0, 0, 0);
+}
+
+.maintitle {
+  margin: 0;
+}
+
+.my {
+  color: black;
+  font-style: italic;
+  font-size: 30px;
+  box-shadow: none;
+}
+
+.report {
+  color: green;
+  font-style: italic;
+  font-size: 30px;
+  box-shadow: none;
+}

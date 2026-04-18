@@ -1,0 +1,10 @@
+.dashboard-layout {
+  min-height: 100vh;
+  background: linear-gradient(180deg, #f6fff8 0%, #e8f7ee 100%);
+}
+
+.dashboard-main {
+  margin-left: 270px;
+  min-height: calc(100vh - 100px);
+  padding: 24px;
+}
