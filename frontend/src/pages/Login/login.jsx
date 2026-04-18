@@ -24,8 +24,8 @@ function Login() {
         <DotGrid
           dotSize={3}
           gap={20}
-          baseColor="#2a2a4a"
-          activeColor="#5227FF"
+          baseColor="#3fd634"
+          activeColor="#1b920c"
           proximity={120}
         />
       </div>
@@ -62,7 +62,7 @@ function Login() {
           <NormalButton text="LOG IN" onClickFunc={handleLogin}></NormalButton>
           <div className="divider"></div>
           <div className="card-footer">
-            <p>
+            <p className="footer-text">
               New here? <span className="create-acc">Create Account</span>
             </p>
           </div>
