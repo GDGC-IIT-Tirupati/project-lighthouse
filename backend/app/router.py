@@ -1,22 +1,27 @@
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, HTTPException, status
 from typing import Annotated
-from .user import get_token
+from sqlalchemy.orm import Session
+from sqlalchemy import select
+from app.user import get_token
+from app.schemas import RegisterRequest, UserResponse
+from db.db import get_db
+from db.model import t_users
 
 
-router = APIRouter()
+router=APIRouter()
+
+@router.get("/")
+def hello():
+  return {"msg":"backend alive"}
 
 @router.get("/user")
 async def get_userid(user: Annotated[dict, Depends(get_token)]):
     return {"id":user["uid"]}
 
-@router.get("/")
-async def root():
-    return {"message": "Hello from backend!"}
+@router.post("/login")
+async def login(payload: dict, response: Response, db: Session = Depends(get_db)):
+    return firebase_auth(payload, response, db)
 
-@router.get("/login")
-async def login():
-    return {"message": "Login page"}
-
-@router.get("/register")
-async def register():
-    return {"message": "Register page"}
+@router.post("/register")
+async def register(payload: dict, response: Response, db: Session = Depends(get_db)):
+    return firebase_auth(payload, response, db)

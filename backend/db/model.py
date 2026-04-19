@@ -5,7 +5,7 @@ import enum
 import uuid
 
 from pgvector.sqlalchemy.vector import VECTOR
-from sqlalchemy import Boolean, CHAR, Column, DateTime, Enum, ForeignKeyConstraint, Integer, PrimaryKeyConstraint, String, Table, UniqueConstraint, Uuid, text
+from sqlalchemy import Boolean, CHAR, Column, DateTime, Enum, ForeignKeyConstraint, Index, Integer, PrimaryKeyConstraint, String, Table, UniqueConstraint, Uuid, text
 from sqlalchemy.dialects.postgresql import JSONB
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, relationship
 
@@ -136,13 +136,18 @@ t_issue_votes = Table(
 )
 
 
-t_session = Table(
-    'session', Base.metadata,
-    Column('user_id', CHAR(255)),
-    Column('session_id', Uuid),
-    Column('created_at', DateTime),
-    ForeignKeyConstraint(['user_id'], ['users.user_id'], name='session_user_id_fkey')
-)
+class Session(Base):
+    __tablename__ = 'session'
+    __table_args__ = (
+        ForeignKeyConstraint(['user_id'], ['users.user_id'], name='session_user_id_fkey'),
+        PrimaryKeyConstraint('session_id', name='session_pkey'),
+        Index('idx_sessions_user_id', 'user_id')
+    )
+
+    session_id: Mapped[uuid.UUID] = mapped_column(Uuid, primary_key=True)
+    user_id: Mapped[Optional[str]] = mapped_column(CHAR(255))
+    created_at: Mapped[Optional[datetime.datetime]] = mapped_column(DateTime)
+    expires_at: Mapped[Optional[datetime.datetime]] = mapped_column(DateTime)
 
 
 t_assignees = Table(
