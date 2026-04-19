@@ -5,3 +5,12 @@ from pathlib import Path
 import os
 config=dotenv_values(Path(__file__).parent[1].resolve()/".env")
 engine=create_engine(config["DATABASE_URL"], echo=True)
+
+SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+
+def get_db():
+    db = SessionLocal()
+    try:
+        yield db
+    finally:
+        db.close()
