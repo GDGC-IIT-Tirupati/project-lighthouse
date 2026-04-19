@@ -1,0 +1,35 @@
+.login-btn {
+  width: 100%;
+  background: #2de60d;
+  color: white;
+  border: none;
+  box-shadow: 5px 5px 0px #000000;
+  padding: 18px;
+  font-weight: 900;
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  transition: all 0.2s ease;
+  margin-top: 10px; 
+}
+
+.login-btn:hover {
+  background: #40e84e;
+  transform: translate(-2px, -2px);
+  box-shadow: 7px 7px 0px #ffffff;
+}
+
+.login-btn:active {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0px #000000;
+}
+
+.arrow {
+  font-size: 1.05em;
+  line-height: 1;
+}
