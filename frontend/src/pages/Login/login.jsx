@@ -4,7 +4,7 @@ import { useState } from "react";
 import DotGrid from "../../components/DotGrid/DotGrid";
 import NormalButton from "../../components/NormalButton/NormalButton";
 
-import webLogo from "../../assets/website_logo.png";
+import webLogo from "../../assets/website_logo.svg";
 
 import "./login-page.css";
 

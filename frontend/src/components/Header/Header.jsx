@@ -1,6 +1,6 @@
 import React from "react";
 
-import webLogo from "../../assets/website_logo.png";
+import webLogo from "../../assets/website_logo.svg";
 
 import "./header.css";
 
