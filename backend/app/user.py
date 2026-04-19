@@ -10,10 +10,14 @@ def get_token(token: Annotated[HTTPAuthorizationCredentials | None, Depends(bear
     try:
         if not token:
             raise ValueError("no token.")
-        user=verify_id_token(token)
+        user=verify_id_token(token.credentials)
         return user
     except Exception:
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Not logged in.",headers={"WWW-Authenticate": "Bearer"})
 def initialize():
-    cred = credentials.Certificate("path here")
-    firebase_admin.initialize_app(cred)
+    try:
+        if not firebase_admin._apps:
+            cred = credentials.Certificate("path here")
+            firebase_admin.initialize_app(cred)
+    except Exception as e:
+        print(f"Warning: Firebase initialization setup skipped: {e}")
