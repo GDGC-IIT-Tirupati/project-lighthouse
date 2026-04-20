@@ -5,6 +5,7 @@ import OTPPage from "./pages/OTP-Page/otp-page.jsx";
 import Home from "./pages/Home/Home.jsx";
 import IssueReport from "./pages/IssueReports/IssueReport.jsx";
 import DashboardLayout from "./layouts/DashboardLayout.jsx";
+import CreateAccount from "./pages/CreateAccount/create-account.jsx";
 
 function App() {
   return (
@@ -12,9 +13,12 @@ function App() {
       <Routes>
         <Route path="/login" element={<Login />}></Route>
         <Route path="/otp" element={<OTPPage />}></Route>
+        <Route path="/create-account" element={<CreateAccount />} />
+        
         <Route path="/" element={<DashboardLayout />}>
           <Route index element={<Home />}></Route>
           <Route path="reports" element={<IssueReport />}></Route>
+          
         </Route>
       </Routes>
     </BrowserRouter>
