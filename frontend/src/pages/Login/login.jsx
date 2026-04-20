@@ -1,21 +1,38 @@
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
+import {auth} from "../../config/firebase.js";
+import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+
 import DotGrid from "../../components/DotGrid/DotGrid";
 import NormalButton from "../../components/NormalButton/NormalButton";
 
 import webLogo from "../../assets/website_logo.svg";
+import googleLogo from "../../assets/google_logo.svg";
 
 import "./login-page.css";
 
 function Login() {
   const navigate = useNavigate();
-  const [mail, setMail] = useState("");
-  const [password, setPassword] = useState("");
 
-  const handleLogin = () => {
-    //TODO: Need to implment fastAPI call
-    navigate("/otp");
+
+  const handleLogin = async () => {
+    try {
+      const provider = new GoogleAuthProvider();
+      const result = await signInWithPopup(auth, provider);
+      
+      const user = result.user;
+      const idToken = await user.getIdToken();
+
+      console.log('User', user);
+      console.log("Token:", idToken);
+      //TODO: Implement sending this data to fastAPI
+      
+      
+    } catch(error)
+    {
+      console.log(error);
+    }
   };
 
   return (
@@ -41,25 +58,14 @@ function Login() {
         <main className="login-card">
           <div className="accent-square"></div>
           <h2 className="card-header">Portal Login</h2>
-          <div className="input-group">
-            <label>campus email</label>
-            <input
-              className="input-field"
-              type="email"
-              placeholder="username@iittp.ac.in"
-              onChange={(e) => setMail(e.target.value)}
-            />
+
+          <div className="outh-button">
+            <div className="google-logo">
+              <img src = {googleLogo} alt="Google Logo"></img>
+            </div>
+            <div className="text-oauth" onClick={handleLogin}>Sign in with Google</div>
           </div>
-          <div className="input-group">
-            <label>security key</label>
-            <input
-              className="input-field"
-              type="password"
-              placeholder="••••••••"
-              onChange={(e) => setPassword(e.target.value)}
-            />
-          </div>
-          <NormalButton text="LOG IN" onClickFunc={handleLogin}></NormalButton>
+
           <div className="divider"></div>
           <div className="card-footer">
             <p className="footer-text">
