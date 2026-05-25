@@ -83,10 +83,6 @@ dependencies = [
 [package.dev-dependencies]
 dev = [
     { name = "ruff" },
-]
-
-[package.dev-dependencies]
-dev = [
     { name = "alembic" },
     { name = "dotenv" },
     { name = "fastapi" },
