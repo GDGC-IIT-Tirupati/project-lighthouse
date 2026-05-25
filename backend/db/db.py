@@ -1,0 +1,16 @@
+from sqlalchemy import create_engine
+from sqlalchemy.orm import declarative_base, sessionmaker
+from dotenv import dotenv_values
+from pathlib import Path
+import os
+config=dotenv_values(Path(__file__).parents[1].resolve()/".env")
+engine=create_engine(config["DATABASE_URL"], echo=True)
+
+SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+
+def get_db():
+    db = SessionLocal()
+    try:
+        yield db
+    finally:
+        db.close()
