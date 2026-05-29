@@ -12,17 +12,16 @@ dotenv.load_dotenv()
 
 app = FastAPI(
     title="Project Lighthouse API",
-    description="Backend services for issue tracking and notification.",
+    description="Backend services for GDGC project lighthouse.",
     version="1.0.0"
 )
 
-# Custom handler to return 400 instead of 422 for validation errors
+
 @app.exception_handler(RequestValidationError)
 async def validation_exception_handler(request: Request, exc: RequestValidationError):
     errors = exc.errors()
     if errors:
         first_error = errors[0]
-        # Clean up field location path (e.g. body.username -> username)
         loc = first_error.get("loc", [])
         field = ".".join(str(x) for x in loc[1:]) if len(loc) > 1 else ".".join(str(x) for x in loc)
         msg = first_error.get("msg", "Invalid value")
