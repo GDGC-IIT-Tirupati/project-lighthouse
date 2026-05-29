@@ -80,14 +80,20 @@ class Issues(Base):
     escalations: Mapped[Optional[int]] = mapped_column(Integer, server_default=text('0'))
 
 
-t_users = Table(
-    'users', Base.metadata,
-    Column('user_id', CHAR(255)),
-    Column('username', String(50)),
-    Column('role', Enum(UserRole, values_callable=lambda cls: [member.value for member in cls], name='user_role')),
-    Column('user_email', String(255)),
-    UniqueConstraint('user_id', name='user_id_unique')
-)
+class User(Base):
+    __tablename__ = 'users'
+
+    user_id: Mapped[str] = mapped_column(CHAR(255), primary_key=True, unique=True)
+    username: Mapped[str] = mapped_column(String(50), nullable=False)
+    role: Mapped[UserRole] = mapped_column(
+        Enum(UserRole, values_callable=lambda cls: [member.value for member in cls], name='user_role'),
+        nullable=False,
+        default=UserRole.STUDENT
+    )
+    user_email: Mapped[str] = mapped_column(String(255), nullable=False)
+
+
+t_users = User.__table__
 
 
 t_comment_votes = Table(

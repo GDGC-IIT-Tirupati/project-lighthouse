@@ -1,12 +1,11 @@
 from fastapi import APIRouter, Depends, HTTPException, status
 from typing import Annotated
 from sqlalchemy.orm import Session
-from sqlalchemy import select
+from fastapi.responses import Response
 from app.user import get_token
-from app.schemas import RegisterRequest, UserResponse
+from app.schemas import RegisterRequest, UserResponse, LoginRequest, LoginResponse
 from db.db import get_db
-from db.model import t_users
-
+from services.auth import firebase_auth, firebase_register
 
 router=APIRouter()
 
@@ -18,10 +17,10 @@ def hello():
 async def get_userid(user: Annotated[dict, Depends(get_token)]):
     return {"id":user["uid"]}
 
-@router.post("/login")
-async def login(payload: dict, response: Response, db: Session = Depends(get_db)):
+@router.post("/login", response_model=LoginResponse)
+async def login(payload: LoginRequest, response: Response, db: Session = Depends(get_db)):
     return firebase_auth(payload, response, db)
 
-@router.post("/register")
-async def register(payload: dict, response: Response, db: Session = Depends(get_db)):
-    return firebase_auth(payload, response, db)
+@router.post("/register", response_model=UserResponse)
+async def register(payload: RegisterRequest, response: Response, db: Session = Depends(get_db)):
+    return firebase_register(payload, response, db)

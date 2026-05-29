@@ -10,10 +10,12 @@ from pathlib import Path
 # access to the values within the .ini file in use.
 config = context.config
 
-env_path = Path(__file__).parent.parent.parent / ".env"
-env_vars = dotenv_values(env_path)
-if "DATABASE_URL" in env_vars:
-    config.set_main_option("sqlalchemy.url", env_vars["DATABASE_URL"])
+from dotenv import load_dotenv
+import os
+load_dotenv()
+database_url = os.getenv("DATABASE_URL")
+if database_url:
+    config.set_main_option("sqlalchemy.url", database_url)
 # config.set_main_option("script_location","db/migrations")
 # Interpret the config file for Python logging.
 # This line sets up loggers basically.
