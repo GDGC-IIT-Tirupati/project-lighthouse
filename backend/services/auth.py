@@ -21,7 +21,7 @@ def firebase_auth(payload: LoginRequest, response: Response, db: sqlalchemyorm.S
 
     uid = decoded["uid"]
     email = payload.user_email or decoded.get("email")
-    name = payload.username or decoded.get("name") or "user"
+    # name = payload.username or decoded.get("name") or "user"
     
     # Map role to enum safely
     role_str = (payload.role.value if payload.role else "student").lower()
@@ -35,7 +35,7 @@ def firebase_auth(payload: LoginRequest, response: Response, db: sqlalchemyorm.S
     if not user:
         user = User(
             user_id=uid,
-            username=name,
+            # username=name,
             role=role_enum,
             user_email=email
         )

@@ -10,7 +10,6 @@ class RegisterRequest(BaseModel):
 
 class LoginRequest(BaseModel):
     token: str
-    username: Optional[str] = None
     user_email: Optional[str] = None
     role: Optional[UserRole] = None
 
