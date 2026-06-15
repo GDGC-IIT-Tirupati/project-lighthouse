@@ -6,7 +6,7 @@ import dotenv
 import os
 
 from app.router import router as api_router
-from app.user import initialize as firebase_init
+from services.user import initialize as firebase_init
 
 dotenv.load_dotenv()
 

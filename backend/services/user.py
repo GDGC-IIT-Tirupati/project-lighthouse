@@ -1,10 +1,16 @@
 import firebase_admin
 import os
 from firebase_admin import credentials
-from typing import Annotated
-from fastapi import Depends, HTTPException, status
+from typing import Annotated, Any
+import uuid
+from datetime import datetime
+from fastapi import Depends, HTTPException, status, Request, Response
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
 from firebase_admin.auth import verify_id_token
+from db.db import get_db
+from db.model import Session, User
+import sqlalchemy.orm as sqlalchemyorm
+
 
 bearer_scheme = HTTPBearer(auto_error=False)
 
@@ -37,3 +43,32 @@ def initialize(cred_path:str):
                 firebase_admin.initialize_app()
     except Exception as e:
         print(f"Warning: Firebase initialization setup skipped: {e}")
+
+def get_current_user(request: Request, db: sqlalchemyorm.Session = Depends(get_db)):
+    session_id = request.cookies.get("session_id")
+    if not session_id:
+        raise HTTPException(401, "No session")
+
+    try:
+        session_uuid = uuid.UUID(session_id)
+    except (ValueError, TypeError):
+        raise HTTPException(401, "Invalid session ID format")
+
+    session = db.query(Session).filter(Session.session_id == session_uuid).first()
+    if not session:
+        raise HTTPException(401, "Invalid Session")
+    now = datetime.now(session.expires_at.tzinfo) if session.expires_at.tzinfo else datetime.now()
+    if session.expires_at < now:
+        db.delete(session)
+        db.commit()
+        raise HTTPException(401, "Session expired")
+
+    user = db.query(User).filter(User.user_id == session.user_id).first()
+    return user
+
+def get_user(user: Any = Depends(get_current_user)):
+    return {
+        "user_id": user.user_id,
+        "email": user.user_email,
+        "role": user.role
+    }
