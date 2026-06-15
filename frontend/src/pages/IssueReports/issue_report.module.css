@@ -1,25 +1,454 @@
-.mainarea {
-  background-color: white;
-  min-height: 420px;
-  border: 2px solid #111;
-  padding: 20px;
-  box-shadow: 10px 10px 1px rgb(0, 0, 0);
+/* Base Layout Reset Overrides */
+.dashboard-wrapper {
+  width: 100vw;
+  min-height: 100vh;
+  background-color: #f1f5f3;
+  display: flex;
+  flex-direction: column;
+  font-family: 'Inter', sans-serif;
+  box-sizing: border-box;
 }
 
-.maintitle {
+.dashboard-wrapper * {
+  box-sizing: border-box;
   margin: 0;
+  padding: 0;
 }
 
-.my {
-  color: black;
-  font-style: italic;
-  font-size: 30px;
-  box-shadow: none;
+/* Global Navigation Interface Layer Layout */
+.dashboard-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 24px;
+  background-color: #ffffff;
+  border-bottom: 3px solid #000000;
+  z-index: 10;
 }
 
-.report {
-  color: green;
-  font-style: italic;
-  font-size: 30px;
-  box-shadow: none;
+.nav-left .nav-logo-box {
+  background-color: #000000;
+  color: #00e676;
+  padding: 6px 12px;
+  font-weight: 900;
+  font-size: 0.95rem;
+  letter-spacing: -0.5px;
+  text-transform: uppercase;
+}
+
+.nav-center-links {
+  display: flex;
+  gap: 32px;
+}
+
+.nav-center-links span {
+  font-weight: 700;
+  font-size: 0.85rem;
+  color: #000000;
+  cursor: pointer;
+}
+
+.nav-center-links .active-nav-link {
+  color: #00e676;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  text-decoration-thickness: 2px;
+}
+
+.nav-right-actions {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.search-container {
+  display: flex;
+  align-items: center;
+  background: #f1f5f3;
+  border: 2px solid #000000;
+  padding: 6px 12px;
+  width: 220px;
+}
+
+.search-icon {
+  font-size: 0.85rem;
+  margin-right: 8px;
+}
+
+.search-container input {
+  border: none;
+  background: transparent;
+  outline: none;
+  font-size: 0.8rem;
+  font-weight: 600;
+  width: 100%;
+}
+
+.nav-icon {
+  font-size: 1.1rem;
+  cursor: pointer;
+}
+
+.user-avatar-circle {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 2px solid #000000;
+  overflow: hidden;
+}
+
+.user-avatar-circle img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Secondary Panel Container Layout */
+.dashboard-layout {
+  display: flex;
+  flex: 1;
+}
+
+/* Sidebar Navigation Controls Component */
+.sidebar-panel {
+  width: 240px;
+  border-right: 3px solid #000000;
+  background-color: #ffffff;
+  padding: 24px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.sidebar-brand h2 {
+  font-size: 1.15rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: -0.5px;
+}
+
+.sidebar-brand p {
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: #666666;
+  letter-spacing: 1px;
+}
+
+.sidebar-menu-items {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.sidebar-btn {
+  width: 100%;
+  text-align: left;
+  background: transparent;
+  border: none;
+  font-size: 0.85rem;
+  font-weight: 700;
+  padding: 10px 12px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border: 2px solid transparent;
+}
+
+.sidebar-btn .btn-icon {
+  font-size: 1rem;
+}
+
+.active-sidebar-btn {
+  background-color: #00e676;
+  border: 2.5px solid #000000;
+  box-shadow: 3px 3px 0px #000000;
+}
+
+/* Right Content Area Feed Space styling */
+.content-feed-panel {
+  flex: 1;
+  padding: 32px;
+  overflow-y: auto;
+}
+
+/* Featured Hero Banner Card */
+.featured-hero-card {
+  background-color: #ffffff;
+  border: 3px solid #000000;
+  box-shadow: 8px 8px 0px #000000;
+  padding: 36px;
+  margin-bottom: 40px;
+  position: relative;
+}
+
+.featured-tag-row {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.tag-outline {
+  border: 2px solid #000000;
+  font-size: 0.65rem;
+  font-weight: 900;
+  padding: 3px 8px;
+}
+
+.tag-solid-critical {
+  background-color: #00e676;
+  color: #000000;
+  border: 2px solid #000000;
+  font-size: 0.65rem;
+  font-weight: 900;
+  padding: 3px 8px;
+}
+
+.badge-featured {
+  background-color: #00e676;
+  border: 2px solid #000000;
+  font-size: 0.65rem;
+  font-weight: 900;
+  padding: 4px 10px;
+  display: inline-block;
+  margin-bottom: 20px;
+}
+
+.featured-title {
+  font-size: 3.2rem;
+  font-weight: 900;
+  letter-spacing: -1px;
+  margin-bottom: 16px;
+}
+
+.featured-description {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #222222;
+  max-width: 750px;
+  line-height: 1.5;
+  margin-bottom: 24px;
+}
+
+.featured-actions-row {
+  display: flex;
+  gap: 16px;
+}
+
+.upvote-hero-btn {
+  background-color: #00e676;
+  border: 2.5px solid #000000;
+  font-weight: 900;
+  font-size: 0.9rem;
+  padding: 12px 24px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 3px 3px 0px #000000;
+}
+
+.share-hero-btn {
+  background-color: #ffffff;
+  border: 2.5px solid #000000;
+  font-weight: 900;
+  font-size: 0.9rem;
+  padding: 12px 24px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Explore Feed Filtering Controls Layout */
+.explore-section-header {
+  margin-bottom: 24px;
+}
+
+.explore-section-header h2 {
+  font-size: 1.8rem;
+  font-weight: 900;
+  margin-bottom: 16px;
+}
+
+.filter-controls-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.category-tabs {
+  display: flex;
+  gap: 10px;
+}
+
+.tab-btn {
+  background: #ffffff;
+  border: 2px solid #000000;
+  padding: 8px 16px;
+  font-weight: 800;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+.tab-btn.active-tab {
+  background-color: #00e676;
+}
+
+.sorting-toggle-group {
+  display: flex;
+  border: 2px solid #000000;
+  background: #ffffff;
+}
+
+.sort-btn {
+  border: none;
+  background: transparent;
+  padding: 8px 16px;
+  font-weight: 900;
+  font-size: 0.75rem;
+  cursor: pointer;
+}
+
+.sort-btn.active-sort {
+  background-color: #00e676;
+}
+
+.sort-btn:not(:last-child) {
+  border-right: 2px solid #000000;
+}
+
+/* Issues Matrix Grid Pipeline Layer */
+.issues-grid-matrix {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 24px;
+}
+
+/* Core Standard Issue Feed Items Layout */
+.issue-card-item {
+  background: #ffffff;
+  border: 3px solid #000000;
+  box-shadow: 6px 6px 0px #000000;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-top-header {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 14px;
+}
+
+.reported-badge {
+  border: 1.5px solid #000000;
+  font-size: 0.55rem;
+  font-weight: 800;
+  padding: 2px 6px;
+  align-self: flex-start;
+  color: #555555;
+}
+
+.category-label {
+  font-size: 0.65rem;
+  font-weight: 900;
+  color: #000000;
+  letter-spacing: 0.5px;
+}
+
+.card-issue-title {
+  font-size: 1.15rem;
+  font-weight: 900;
+  line-height: 1.25;
+  margin-bottom: 12px;
+}
+
+.card-issue-desc {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #555555;
+  line-height: 1.4;
+  margin-bottom: 24px;
+  flex: 1; /* Pushes content footer down uniformly */
+}
+
+.card-footer-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: auto;
+}
+
+.card-username-author {
+  font-size: 0.75rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.card-upvote-counter-btn {
+  background-color: #00e676;
+  border: 2px solid #000000;
+  padding: 6px 12px;
+  font-weight: 900;
+  font-size: 0.75rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  box-shadow: 2px 2px 0px #000000;
+}
+
+/* Standout Prompt Interactive Component CTA Layout Card */
+.report-cta-card-item {
+  background-color: #00e676;
+  border: 3px dashed #000000;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  box-shadow: 6px 6px 0px #000000;
+}
+
+.plus-icon-container {
+  width: 44px;
+  height: 44px;
+  border: 2px solid #000000;
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  font-weight: 900;
+  margin-bottom: 16px;
+}
+
+.report-cta-card-item h3 {
+  font-size: 1.25rem;
+  font-weight: 900;
+  margin-bottom: 12px;
+}
+
+.report-cta-card-item p {
+  font-size: 0.8rem;
+  font-weight: 800;
+  line-height: 1.4;
+  color: #000000;
+  margin-bottom: 20px;
+}
+
+.cta-report-action-btn {
+  background-color: #ffffff;
+  border: 2.5px solid #000000;
+  font-weight: 900;
+  font-size: 0.85rem;
+  padding: 10px 20px;
+  cursor: pointer;
+  box-shadow: 3px 3px 0px #000000;
+  width: 80%;
 }
