@@ -6,9 +6,12 @@ import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 
 import DotGrid from "../../components/DotGrid/DotGrid";
 import NormalButton from "../../components/NormalButton/NormalButton";
+import Register from "../Register/register.jsx";
 
 import webLogo from "../../assets/website_logo.svg";
 import googleLogo from "../../assets/google_logo.svg";
+
+import {Link} from "react-router-dom";
 
 import "./login-page.css";
 
@@ -40,6 +43,10 @@ function Login() {
           role: "student"
         })
       });
+
+      console.log("This is the response:- ")
+      console.log(response)
+
       if (!response.ok) {
         const err = await response.json();
         setError(err.detail || "Registration failed");
@@ -78,17 +85,17 @@ function Login() {
           <div className="accent-square"></div>
           <h2 className="card-header">Portal Login</h2>
 
-          <div className="outh-button">
+          <div className="outh-button" onClick={handleLogin}>
             <div className="google-logo">
               <img src={googleLogo} alt="Google Logo"></img>
             </div>
-            <div className="text-oauth" onClick={handleLogin}>Sign in with Google</div>
+            <div className="text-oauth">Sign in with Google</div>
           </div>
 
           <div className="divider"></div>
           <div className="card-footer">
             <p className="footer-text">
-              New here? <span className="create-acc">Create Account</span>
+              New here? <Link className="create-acc" to = "/register">Create Account</Link>
             </p>
           </div>
         </main>

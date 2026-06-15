@@ -6,6 +6,7 @@ import Register from "./pages/Register/register.jsx";
 import Home from "./pages/Home/Home.jsx";
 import IssueReport from "./pages/IssueReports/IssueReport.jsx";
 import DashboardLayout from "./layouts/DashboardLayout.jsx";
+import Chat from "./pages/Chat/Chat.jsx";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path="/" element={<DashboardLayout />}>
           <Route index element={<Home />}></Route>
           <Route path="reports" element={<IssueReport />}></Route>
+          <Route path="new_ticket" element={<Chat/>}></Route>
         </Route>
       </Routes>
     </BrowserRouter>

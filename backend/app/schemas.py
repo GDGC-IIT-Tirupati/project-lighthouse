@@ -1,5 +1,6 @@
 from pydantic import BaseModel
 from typing import Optional
+from typing import List
 from db.model import UserRole
 
 class RegisterRequest(BaseModel):
@@ -25,3 +26,17 @@ class UserResponse(BaseModel):
 
 class LoginResponse(BaseModel):
     message: str
+
+class ChatResponse(BaseModel):
+    reply: str
+
+
+class MessageItem(BaseModel):
+    role: str
+    content: str
+
+class ChatPayload(BaseModel):
+    history: List[MessageItem]
+
+
+
