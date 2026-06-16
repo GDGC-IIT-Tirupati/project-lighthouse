@@ -2,19 +2,13 @@ from fastapi import APIRouter, Request, Depends, HTTPException, status
 from typing import Annotated
 from sqlalchemy.orm import Session
 from fastapi.responses import Response
-<<<<<<< Updated upstream
-from app.user import get_token
 from app.schemas import RegisterRequest, UserResponse, LoginRequest, LoginResponse, ChatResponse, ChatPayload
-from db.db import get_db
-from services.auth import firebase_auth, firebase_register
 from services.chat import model_response
-=======
 from services.user import get_token, get_current_user
 from app.schemas import RegisterRequest, UserResponse, LoginRequest, LoginResponse
 from db.db import get_db
 from services.auth import firebase_auth, firebase_register
 from services.issues import get_issues
->>>>>>> Stashed changes
 
 router=APIRouter()
 
