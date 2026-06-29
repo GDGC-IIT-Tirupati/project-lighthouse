@@ -8,8 +8,12 @@
       "version": "22"
     }
   },
+  "mounts": [
+    "source=${localWorkspaceFolder}/.devcontainer/npm-cache,target=/home/vscode/.npm,type=bind,consistency=cached",
+    "source=${localWorkspaceFolder}/.devcontainer/uv-cache,target=/home/vscode/.cache/uv,type=bind,consistency=cached"
+  ],
   "forwardPorts": [8000, 3000],
-  "postCreateCommand": "npm install --prefix frontend",
+  "postCreateCommand": "npm install --prefix frontend && cd backend && uv sync --frozen",
   "customizations": {
     "vscode": {
       "settings": {
