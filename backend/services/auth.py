@@ -60,27 +60,6 @@ def firebase_auth(payload: LoginRequest, response: Response, db: sqlalchemyorm.S
 
     return {"message": "Authenticated"}
 
-def get_current_user(request: Request, db: sqlalchemyorm.Session = Depends(get_db)):
-    session_id = request.cookies.get("session_id")
-    if not session_id:
-        raise HTTPException(401, "No session")
-
-    try:
-        session_uuid = uuid.UUID(session_id)
-    except (ValueError, TypeError):
-        raise HTTPException(401, "Invalid session ID format")
-
-    session = db.query(Session).filter(Session.session_id == session_uuid).first()
-    if not session:
-        raise HTTPException(401, "Invalid Session")
-    if session.expires_at < datetime.now().astimezone():
-        db.delete(session)
-        db.commit()
-        raise HTTPException(401, "Session expired")
-
-    user = db.query(User).filter(User.user_id == session.user_id).first()
-    return user
-
 def logout(request: Request, response: Response, db: sqlalchemyorm.Session = Depends(get_db)):
     session_id = request.cookies.get("session_id")
 
@@ -98,12 +77,6 @@ def logout(request: Request, response: Response, db: sqlalchemyorm.Session = Dep
 
     return {"message": "Logged out"}
 
-def get_user(user: Any = Depends(get_current_user)):
-    return {
-        "user_id": user.user_id,
-        "email": user.user_email,
-        "role": user.role
-    }
 
 
 def firebase_register(payload: RegisterRequest, response: Response, db: sqlalchemyorm.Session = Depends(get_db)):
